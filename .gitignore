@@ -1,0 +1,45 @@
+# ---- Gradle 缓存与构建产物（不许进仓库，体积 400MB+ 的纯垃圾）----
+.gradle/
+build/
+out/
+bin/
+classes/
+*.class
+*.jar.tmp
+
+# ---- Loom / 反编译中间产物 ----
+.loom/
+run/
+remappedSrc/
+.projects/
+.fabric/
+
+# ---- IDE ----
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+*.launch
+
+# ---- 系统垃圾 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*~
+
+# ---- 本地环境 ----
+local.properties
+gradle-app.setting
+.gradletasknamecache
+*.hprof
+hs_err_pid*.log
+replay_pid*.log

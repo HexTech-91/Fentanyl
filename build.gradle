@@ -1,0 +1,105 @@
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    // ---- 国内镜像（优先）----
+    maven {
+        name = 'AliyunPublic'
+        url = 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        name = 'AliyunCentral'
+        url = 'https://maven.aliyun.com/repository/central'
+    }
+    maven {
+        name = 'TencentPublic'
+        url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+    }
+    // ---- Fabric 生态（国内无可用镜像，保留官方源）----
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    maven {
+        name = 'Shedaniel'
+        url = 'https://maven.shedaniel.me/'
+    }
+    maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/releases/'
+    }
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+    }
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/alien.accesswidener")
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Bundled mods (also shipped inside META-INF/jars as declared by fabric.mod.json)
+    modImplementation files("src/main/resources/META-INF/jars/satin-2.0.0.jar")
+    modImplementation files("src/main/resources/META-INF/jars/sodium-fabric-0.6.13+mc1.21.1.jar")
+    modImplementation files("src/main/resources/META-INF/jars/IAS-Fabric-1.21.1-9.0.4.jar")
+
+    // Plain Java libraries (bundled)
+    implementation files("src/main/resources/META-INF/jars/jlayer-1.0.1.jar")
+    implementation files("src/main/resources/META-INF/jars/zxing-core-3.5.2.jar")
+    implementation files("src/main/resources/META-INF/jars/types-0.2.0.jar")
+    implementation files("src/main/resources/META-INF/jars/skija-shared-0.116.4.jar")
+    runtimeOnly files("src/main/resources/META-INF/jars/skija-windows-x64-0.116.4.jar")
+    runtimeOnly files("src/main/resources/META-INF/jars/skija-linux-x64-0.116.4.jar")
+    runtimeOnly files("src/main/resources/META-INF/jars/skija-macos-x64-0.116.4.jar")
+    runtimeOnly files("src/main/resources/META-INF/jars/skija-macos-arm64-0.116.4.jar")
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+    }
+}

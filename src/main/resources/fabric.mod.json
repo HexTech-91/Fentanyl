@@ -1,0 +1,67 @@
+{
+    "schemaVersion":  1,
+    "id":  "alien",
+    "version":  "4.0.0",
+    "name":  "宙斯Client",
+    "description":  "宙斯Client",
+    "authors":  [
+                    "ItzLuminous",
+                    "NotXiguaJerry"
+                ],
+    "accessWidener":  "alien.accesswidener",
+    "environment":  "*",
+    "entrypoints":  {
+                        "main":  [
+                                     "dev.luminous.Alien"
+                                 ],
+                        "client":  [
+                                       "dev.luminous.AlienClient"
+                                   ]
+                    },
+    "mixins":  [
+                   "alien.mixins.json"
+               ],
+    "depends":  {
+                    "fabricloader":  "\u003e=0.15.0",
+                    "minecraft":  "1.21.1",
+                    "java":  "\u003e=17"
+                },
+    "suggests":  {
+                     "another-mod":  "*"
+                 },
+    "jars":  [
+                 {
+                     "file":  "META-INF/jars/IAS-Fabric-1.21.1-9.0.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/jlayer-1.0.1.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/zxing-core-3.5.2.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/satin-2.0.0.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/sodium-fabric-0.6.13+mc1.21.1.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/skija-shared-0.116.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/skija-windows-x64-0.116.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/skija-linux-x64-0.116.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/skija-macos-x64-0.116.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/skija-macos-arm64-0.116.4.jar"
+                 },
+                 {
+                     "file":  "META-INF/jars/types-0.2.0.jar"
+                 }
+             ]
+}
