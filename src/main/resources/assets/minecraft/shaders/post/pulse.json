@@ -1,0 +1,33 @@
+{
+  "targets": [
+    "bufIn",
+    "swap",
+    "bufOut"
+  ],
+  "passes": [
+    {
+      "name": "pulse",
+      "intarget": "bufIn",
+      "outtarget": "swap",
+      "uniforms": [
+        { "name": "mixFactor", "values": [ 1.0 ] },
+        { "name": "minAlpha", "values": [ 0.35 ] },
+        { "name": "radius", "values": [ 2.0 ] },
+        { "name": "divider", "values": [ 150.0 ] },
+        { "name": "maxSample", "values": [ 10.0 ] },
+        { "name": "quality", "values": [ 1.0 ] },
+        { "name": "color", "values": [ 0.85, 0.05, 0.66 ] },
+        { "name": "color2", "values": [ 0.56, 0.06, 0.68 ] },
+        { "name": "time", "values": [ 1.0 ] },
+        { "name": "size", "values": [ 12.0 ] },
+        { "name": "resolution", "values": [ 1.0, 1.0 ] }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "bufOut",
+      "uniforms": []
+    }
+  ]
+}
